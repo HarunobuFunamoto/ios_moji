@@ -65,7 +65,7 @@ class AdminViewController: UIViewController, UITextFieldDelegate{
         //http://64f2467d.ngrok.io/saitama/
         //http://localhost:8000/saitama/
         
-        guard let send_url = URL(string: "http://localhost:8000/saitama/")else{return}
+        guard let send_url = URL(string: "http://64945047.ngrok.io/saitama/")else{return}
         
         var request = URLRequest(url: send_url)
         request.httpMethod = "POST"
