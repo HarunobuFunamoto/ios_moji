@@ -10,6 +10,15 @@ import UIKit
 
 class AdminViewController: UIViewController, UITextFieldDelegate{
     
+    //let boundary = "----WebKitFormBoundaryZLdHZy8HNaBmUX0d"
+    var dataList:[String] = []
+    //classを憑依
+    var item:Item?
+    
+    var speed_list = [Any]()
+    var yakudo_list = [Any]()
+    
+    
     
     @IBOutlet weak var textbox: UITextField!
     @IBOutlet weak var adminTextbox: UITextField!
@@ -33,6 +42,26 @@ class AdminViewController: UIViewController, UITextFieldDelegate{
         adminTextbox.clearButtonMode = UITextFieldViewMode.always
         
         self.view.addSubview(adminTextbox)
+        
+        
+        
+        do {
+            //CSVファイルのパスを取得する。
+            let csvPath = Bundle.main.path(forResource: "point", ofType: "csv")
+            
+            //CSVファイルのデータを取得する。
+            //let csvData = try String(contentsOfFile:csvPath!, encoding:String.Encoding.utf8)
+            let csvData = try? NSString(contentsOfFile: csvPath!, encoding: String.Encoding.utf8.rawValue)
+            
+            //改行区切りでデータを分割して配列に格納する。
+            dataList = csvData!.components(separatedBy:",")
+            print(dataList)
+        }
+        //} catch {
+        //    print(error)
+        //}
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,7 +94,7 @@ class AdminViewController: UIViewController, UITextFieldDelegate{
         //http://64f2467d.ngrok.io/saitama/
         //http://localhost:8000/saitama/
         
-        guard let send_url = URL(string: "http://64945047.ngrok.io/saitama/")else{return}
+        guard let send_url = URL(string: "http://ef6e06da.ngrok.io/saitama/")else{return}
         
         var request = URLRequest(url: send_url)
         request.httpMethod = "POST"
@@ -93,10 +122,10 @@ class AdminViewController: UIViewController, UITextFieldDelegate{
             }
             
         }.resume()
-        
-        
     }
     
+  
+  
     
 }
 
